@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FrontierOps AI — Evaluation Dashboard</title>
+<style>
+  :root {
+    --bg: #0b0f14; --card: #121821; --border: #22303f; --text: #e6edf3;
+    --muted: #8b98a5; --accent: #4fd1c5; --warn: #f0b429; --bad: #f16063; --good: #3fb950;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 24px; max-width: 1100px; margin: 0 auto;
+  }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 28px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .metric-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .metric-value { font-size: 26px; font-weight: 600; margin-top: 4px; }
+  .good { color: var(--good); }
+  .warn { color: var(--warn); }
+  .bad { color: var(--bad); }
+  h2 { font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin: 28px 0 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 500; }
+  .pill { padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+  .pill-good { background: rgba(63,185,80,0.15); color: var(--good); }
+  .pill-bad { background: rgba(241,96,99,0.15); color: var(--bad); }
+  .note { background: rgba(240,180,41,0.1); border: 1px solid rgba(240,180,41,0.3); border-radius: 8px; padding: 12px 14px; font-size: 13px; color: #f0d999; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+  <h1>FrontierOps AI — Evaluation Dashboard</h1>
+  <div class="sub">Generated from a real pipeline run on 24 benchmark questions · offline hashing embedder (no network) · ExtractiveMockLLM (offline)</div>
+
+  <div class="note">These numbers come from executing the full six-agent pipeline against
+  the benchmark in this repo, not from placeholders. The offline fallback embedder
+  (used because this environment has no network for sentence-transformers/FAISS)
+  compresses cosine-similarity scores, which lowers context precision and raises the
+  human-review rate versus what a production embedding model would give — see
+  README.md "Known limitations of the offline demo".</div>
+
+  <h2>Retrieval &amp; Answer Quality</h2>
+  <div class="grid">
+    <div class="card"><div class="metric-label">Context Precision</div><div class="metric-value">44.2%</div></div>
+    <div class="card"><div class="metric-label">Context Recall</div><div class="metric-value">100.0%</div></div>
+    <div class="card"><div class="metric-label">Faithfulness</div><div class="metric-value">100.0%</div></div>
+    <div class="card"><div class="metric-label">Citation Accuracy</div><div class="metric-value">65.3%</div></div>
+  </div>
+
+  <h2>Operations</h2>
+  <div class="grid">
+    <div class="card"><div class="metric-label">Avg Latency</div><div class="metric-value">0.38 ms</div></div>
+    <div class="card"><div class="metric-label">Workflow Success Rate</div><div class="metric-value">100.0%</div></div>
+    <div class="card"><div class="metric-label">Human Review Rate</div><div class="metric-value">83.3%</div></div>
+    <div class="card"><div class="metric-label">Injection Attempts Caught</div><div class="metric-value">3</div></div>
+  </div>
+
+  <h2>Guardrail Effectiveness (adversarial test set, 7 cases)</h2>
+  <div class="grid">
+    <div class="card"><div class="metric-label">Unsupported, shown to user — before</div><div class="metric-value bad">6</div></div>
+    <div class="card"><div class="metric-label">Unsupported, shown to user — after</div><div class="metric-value good">0</div></div>
+    <div class="card"><div class="metric-label">Reduction</div><div class="metric-value good">100.0%</div></div>
+  </div>
+
+  <h2>Agent Pipeline</h2>
+  <table>
+    <tr><th>Agent</th><th>Status</th></tr>
+    <tr><td>Orchestrator</td><td><span class="pill pill-good">OK</span></td></tr>
+<tr><td>Retrieval</td><td><span class="pill pill-good">OK</span></td></tr>
+<tr><td>Research</td><td><span class="pill pill-good">OK</span></td></tr>
+<tr><td>Analysis</td><td><span class="pill pill-good">OK</span></td></tr>
+<tr><td>Validation</td><td><span class="pill pill-good">OK</span></td></tr>
+<tr><td>Response</td><td><span class="pill pill-good">OK</span></td></tr>
+  </table>
+
+  <h2>Per-Question Results</h2>
+  <table>
+    <tr><th>ID</th><th>Question</th><th>Intent</th><th>Confidence</th><th>Faithfulness</th><th>Human Review</th></tr>
+    <tr><td>Q001</td><td>What is the enterprise refund period?</td><td>policy_question</td><td>0.74</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q002</td><td>Are enterprise customers eligible for a refund within 30 days?</td><td>policy_question</td><td>0.99</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q003</td><td>What overrides the standard refund window for enterprise contracts?</td><td>policy_question</td><td>0.81</td><td>1.00</td><td><span class="pill pill-good">False</span></td></tr>
+<tr><td>Q004</td><td>How are refund requests submitted?</td><td>policy_question</td><td>0.90</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q005</td><td>How long does a standard refund request take to process?</td><td>policy_question</td><td>0.64</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q006</td><td>What is the Annual Master Agreement?</td><td>general_question</td><td>0.87</td><td>1.00</td><td><span class="pill pill-good">False</span></td></tr>
+<tr><td>Q007</td><td>What support tiers do enterprise customers receive?</td><td>support_question</td><td>0.84</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q008</td><td>How is customer data encrypted at rest?</td><td>general_question</td><td>0.95</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q009</td><td>What authentication is required to access production systems?</td><td>security_question</td><td>0.96</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q010</td><td>How quickly must a security incident be reported to customers?</td><td>security_question</td><td>0.85</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q011</td><td>How long are access logs retained?</td><td>security_question</td><td>0.77</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q012</td><td>What support channels can enterprise customers use?</td><td>support_question</td><td>0.72</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q013</td><td>What is the first response time for Premium tier support?</td><td>support_question</td><td>0.92</td><td>1.00</td><td><span class="pill pill-good">False</span></td></tr>
+<tr><td>Q014</td><td>What is the first response time for Priority tier support?</td><td>support_question</td><td>0.92</td><td>1.00</td><td><span class="pill pill-good">False</span></td></tr>
+<tr><td>Q015</td><td>When does a support ticket automatically escalate?</td><td>support_question</td><td>0.43</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q016</td><td>What access does an Admin role have?</td><td>account_question</td><td>0.76</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q017</td><td>What access does a Viewer role have?</td><td>account_question</td><td>0.76</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q018</td><td>How long is a data export download link valid?</td><td>account_question</td><td>0.93</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q019</td><td>In what formats can workspace data be exported?</td><td>general_question</td><td>0.77</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q020</td><td>Can an enterprise customer receive a refund after 30 days?</td><td>policy_question</td><td>0.76</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q021</td><td>Does a Member role have billing access?</td><td>account_question</td><td>0.86</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q022</td><td>What is the vendor onboarding process?</td><td>general_question</td><td>0.46</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q023</td><td>What is our company's stock price today?</td><td>general_question</td><td>0.31</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+<tr><td>Q024</td><td>What TLS version is used for data in transit?</td><td>general_question</td><td>0.82</td><td>1.00</td><td><span class="pill pill-bad">True</span></td></tr>
+  </table>
+</body>
+</html>

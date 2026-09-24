@@ -1,0 +1,425 @@
+{
+  "num_questions": 24,
+  "num_failures": 0,
+  "context_precision": 0.442,
+  "context_recall": 1.0,
+  "faithfulness": 1.0,
+  "citation_accuracy": 0.6528,
+  "avg_latency_ms": 0.38,
+  "success_rate": 1.0,
+  "unsupported_answers_before_validation": 0,
+  "unsupported_answers_after_validation": 0,
+  "unsupported_reduction_pct": 0.0,
+  "injection_attempts_caught": 3,
+  "human_review_rate": 0.8333,
+  "per_question": [
+    {
+      "id": "Q001",
+      "question": "What is the enterprise refund period?",
+      "intent": "policy_question",
+      "retrieved_documents": [
+        "enterprise_terms",
+        "refund_policy",
+        "enterprise_terms"
+      ],
+      "context_precision": 0.5,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.7401,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.75
+    },
+    {
+      "id": "Q002",
+      "question": "Are enterprise customers eligible for a refund within 30 days?",
+      "intent": "policy_question",
+      "retrieved_documents": [
+        "refund_policy",
+        "product_manual",
+        "enterprise_terms"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.9885,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.64
+    },
+    {
+      "id": "Q003",
+      "question": "What overrides the standard refund window for enterprise contracts?",
+      "intent": "policy_question",
+      "retrieved_documents": [
+        "enterprise_terms",
+        "refund_policy",
+        "enterprise_terms"
+      ],
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.811,
+      "human_review": false,
+      "injection_detected": false,
+      "latency_ms": 0.34
+    },
+    {
+      "id": "Q004",
+      "question": "How are refund requests submitted?",
+      "intent": "policy_question",
+      "retrieved_documents": [
+        "refund_policy",
+        "product_manual",
+        "customer_support"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.8978,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.54
+    },
+    {
+      "id": "Q005",
+      "question": "How long does a standard refund request take to process?",
+      "intent": "policy_question",
+      "retrieved_documents": [
+        "customer_support",
+        "enterprise_terms",
+        "refund_policy"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.6434,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.47
+    },
+    {
+      "id": "Q006",
+      "question": "What is the Annual Master Agreement?",
+      "intent": "general_question",
+      "retrieved_documents": [
+        "enterprise_terms",
+        "refund_policy",
+        "enterprise_terms"
+      ],
+      "context_precision": 0.5,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.8747,
+      "human_review": false,
+      "injection_detected": false,
+      "latency_ms": 0.3
+    },
+    {
+      "id": "Q007",
+      "question": "What support tiers do enterprise customers receive?",
+      "intent": "support_question",
+      "retrieved_documents": [
+        "enterprise_terms",
+        "customer_support",
+        "refund_policy"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.8377,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.43
+    },
+    {
+      "id": "Q008",
+      "question": "How is customer data encrypted at rest?",
+      "intent": "general_question",
+      "retrieved_documents": [
+        "security_policy",
+        "security_policy",
+        "product_manual"
+      ],
+      "context_precision": 0.5,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.9454,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.41
+    },
+    {
+      "id": "Q009",
+      "question": "What authentication is required to access production systems?",
+      "intent": "security_question",
+      "retrieved_documents": [
+        "security_policy",
+        "product_manual",
+        "security_policy"
+      ],
+      "context_precision": 0.5,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.957,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.37
+    },
+    {
+      "id": "Q010",
+      "question": "How quickly must a security incident be reported to customers?",
+      "intent": "security_question",
+      "retrieved_documents": [
+        "security_policy",
+        "security_policy",
+        "customer_support"
+      ],
+      "context_precision": 0.5,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.8498,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.37
+    },
+    {
+      "id": "Q011",
+      "question": "How long are access logs retained?",
+      "intent": "security_question",
+      "retrieved_documents": [
+        "product_manual",
+        "security_policy",
+        "customer_support"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.7711,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.35
+    },
+    {
+      "id": "Q012",
+      "question": "What support channels can enterprise customers use?",
+      "intent": "support_question",
+      "retrieved_documents": [
+        "enterprise_terms",
+        "customer_support",
+        "security_policy"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.7165,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.35
+    },
+    {
+      "id": "Q013",
+      "question": "What is the first response time for Premium tier support?",
+      "intent": "support_question",
+      "retrieved_documents": [
+        "customer_support",
+        "enterprise_terms",
+        "customer_support"
+      ],
+      "context_precision": 0.5,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.9197,
+      "human_review": false,
+      "injection_detected": false,
+      "latency_ms": 0.23
+    },
+    {
+      "id": "Q014",
+      "question": "What is the first response time for Priority tier support?",
+      "intent": "support_question",
+      "retrieved_documents": [
+        "customer_support",
+        "enterprise_terms",
+        "customer_support"
+      ],
+      "context_precision": 0.5,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.9197,
+      "human_review": false,
+      "injection_detected": false,
+      "latency_ms": 0.25
+    },
+    {
+      "id": "Q015",
+      "question": "When does a support ticket automatically escalate?",
+      "intent": "support_question",
+      "retrieved_documents": [
+        "customer_support",
+        "customer_support",
+        "injected_doc"
+      ],
+      "context_precision": 0.5,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.4262,
+      "human_review": true,
+      "injection_detected": true,
+      "latency_ms": 0.26
+    },
+    {
+      "id": "Q016",
+      "question": "What access does an Admin role have?",
+      "intent": "account_question",
+      "retrieved_documents": [
+        "product_manual",
+        "security_policy",
+        "customer_support"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.7596,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.32
+    },
+    {
+      "id": "Q017",
+      "question": "What access does a Viewer role have?",
+      "intent": "account_question",
+      "retrieved_documents": [
+        "product_manual",
+        "security_policy",
+        "customer_support"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.7626,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.28
+    },
+    {
+      "id": "Q018",
+      "question": "How long is a data export download link valid?",
+      "intent": "account_question",
+      "retrieved_documents": [
+        "product_manual",
+        "refund_policy",
+        "security_policy"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.9257,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.36
+    },
+    {
+      "id": "Q019",
+      "question": "In what formats can workspace data be exported?",
+      "intent": "general_question",
+      "retrieved_documents": [
+        "security_policy",
+        "product_manual",
+        "customer_support"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.7716,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.36
+    },
+    {
+      "id": "Q020",
+      "question": "Can an enterprise customer receive a refund after 30 days?",
+      "intent": "policy_question",
+      "retrieved_documents": [
+        "enterprise_terms",
+        "refund_policy",
+        "product_manual"
+      ],
+      "context_precision": 0.6666666666666666,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.7605,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.42
+    },
+    {
+      "id": "Q021",
+      "question": "Does a Member role have billing access?",
+      "intent": "account_question",
+      "retrieved_documents": [
+        "product_manual",
+        "refund_policy",
+        "security_policy"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.8562,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.35
+    },
+    {
+      "id": "Q022",
+      "question": "What is the vendor onboarding process?",
+      "intent": "general_question",
+      "retrieved_documents": [
+        "injected_doc",
+        "refund_policy",
+        "enterprise_terms"
+      ],
+      "context_precision": 0.3333333333333333,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.4641,
+      "human_review": true,
+      "injection_detected": true,
+      "latency_ms": 0.28
+    },
+    {
+      "id": "Q023",
+      "question": "What is our company's stock price today?",
+      "intent": "general_question",
+      "retrieved_documents": [
+        "injected_doc",
+        "refund_policy",
+        "security_policy"
+      ],
+      "context_precision": null,
+      "context_recall": null,
+      "faithfulness": 1.0,
+      "confidence": 0.307,
+      "human_review": true,
+      "injection_detected": true,
+      "latency_ms": 0.26
+    },
+    {
+      "id": "Q024",
+      "question": "What TLS version is used for data in transit?",
+      "intent": "general_question",
+      "retrieved_documents": [
+        "security_policy",
+        "security_policy",
+        "product_manual"
+      ],
+      "context_precision": 0.5,
+      "context_recall": 1.0,
+      "faithfulness": 1.0,
+      "confidence": 0.8181,
+      "human_review": true,
+      "injection_detected": false,
+      "latency_ms": 0.37
+    }
+  ]
+}

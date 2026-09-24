@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r backend/requirements.txt
+
+      - name: Lint
+        run: |
+          pip install ruff
+          ruff check backend/app scripts
+
+      - name: Unit tests (guardrails + agents)
+        run: pytest backend/tests/test_guardrails.py -v
+
+      - name: API / pipeline integration tests
+        run: pytest backend/tests/test_pipeline.py -v
+
+      - name: Guardrail regression demo (must show 0 unsupported answers exposed after guardrails)
+        run: |
+          python scripts/guardrail_demo.py
+          python -c "
+          import json
+          r = json.load(open('data/evaluation/guardrail_demo_results.json'))
+          assert r['unsupported_answers_shown_after_guardrails'] == 0, 'Guardrail regression: unsupported content is reaching users'
+          print('Guardrail gate: PASS')
+          "
+
+      - name: Groundedness / evaluation benchmark
+        run: |
+          python scripts/evaluate.py
+          python -c "
+          import json
+          r = json.load(open('data/evaluation/results.json'))
+          assert r['faithfulness'] >= 0.85, f'Faithfulness regression: {r[\"faithfulness\"]}'
+          assert r['success_rate'] == 1.0, f'Pipeline failures detected: {r[\"num_failures\"]}'
+          print('Evaluation gate: PASS', {k: v for k, v in r.items() if k != 'per_question'})
+          "
+
+      - name: Build Docker image
+        run: docker build -f backend/Dockerfile -t frontierops-ai-backend:ci .
+
+  deploy-gate:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - run: echo "All quality gates passed — deployment allowed."
