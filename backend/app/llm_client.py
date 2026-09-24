@@ -7,7 +7,7 @@ Pluggable LLM client.
   "reasoner" that answers strictly from the evidence it's given, using
   keyword-overlap sentence selection. This is a real algorithm (not a canned
   string), which is what lets the demo/evaluation scripts run end-to-end in
-  environments with no LLM API access — such as this sandbox.
+  environments with no LLM API access configured.
 
 Swap the backend by setting ANTHROPIC_API_KEY, or by passing a different
 client into the agents.

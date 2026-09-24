@@ -4,7 +4,7 @@ Vector store abstraction.
 Production: FAISS (IndexFlatIP over normalized vectors == cosine similarity).
 Fallback: NumpyVectorStore, a real (not mocked) brute-force cosine-similarity
 search implemented in numpy, used automatically when the `faiss` package
-isn't installed (e.g. this sandbox has no network to install it). Same
+isn't installed. Same
 interface either way, so swapping backends requires no code changes upstream.
 """
 from __future__ import annotations

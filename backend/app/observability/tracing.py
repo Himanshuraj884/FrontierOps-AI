@@ -7,7 +7,7 @@ exportable to any OTLP collector (Jaeger, Honeycomb, etc.).
 
 Fallback: JsonlTracer — writes the same span shape (name, start, end,
 duration_ms, attributes) as newline-delimited JSON to a local file. Used
-automatically when opentelemetry isn't installed (e.g. this sandbox), so
+automatically when opentelemetry isn't installed, so
 latency numbers in the dashboard/evaluation are always real measurements,
 never placeholders.
 """

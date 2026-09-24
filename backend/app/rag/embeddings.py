@@ -4,7 +4,7 @@ Embedding layer for the RAG pipeline.
 Production usage: install `sentence-transformers` and use SentenceTransformerEmbedder
 (all-MiniLM-L6-v2 or similar). This module auto-detects it.
 
-Sandbox / offline fallback: HashingEmbedder — a deterministic, dependency-free
+Offline fallback: HashingEmbedder — a deterministic, dependency-free
 bag-of-words hashing vectorizer with TF-IDF-style weighting, implemented in
 pure numpy. It is not as semantically strong as a real sentence embedding
 model, but it is a real, working vector representation (not a stub) so the
@@ -88,7 +88,7 @@ class HashingEmbedder:
 def get_embedder(dim: int = 512):
     """Returns the best available embedder. Tries sentence-transformers
     first (production quality); falls back to HashingEmbedder if the
-    package or network isn't available (e.g. this sandbox)."""
+    package isn't installed."""
     try:
         from sentence_transformers import SentenceTransformer  # type: ignore
 

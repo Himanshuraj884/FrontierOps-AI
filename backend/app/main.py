@@ -1,7 +1,7 @@
 """
 FastAPI API gateway. Requires `pip install -r backend/requirements.txt`
 (fastapi/uvicorn/sqlalchemy/pydantic) — not installable in the offline
-sandbox this repo was scaffolded in, but this is real, complete, runnable
+environment without these installed, but this is real, complete, runnable
 code for use in an environment with network access.
 
 Run:

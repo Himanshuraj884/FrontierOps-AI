@@ -8,8 +8,7 @@ Two execution backends:
     describes).
   - SequentialWorkflow: a dependency-free hand-rolled executor with the same
     state-machine semantics (used automatically as a fallback, e.g. in this
-    sandbox, and useful for unit testing agent logic without the extra
-    dependency).
+    and useful for unit testing agent logic without the extra dependency).
 """
 from __future__ import annotations
 
@@ -51,7 +50,7 @@ class SequentialWorkflow:
 def build_workflow(embedder, vector_store, llm_client, top_k: int = 3):
     """Returns a workflow object with a .run(query) -> AgentState method.
     Tries LangGraph first; falls back to SequentialWorkflow (used in this
-    sandbox since `langgraph` isn't installable here without network)."""
+    if `langgraph` isn't installed)."""
     try:
         import langgraph  # noqa: F401  (presence check only)
 
@@ -66,7 +65,7 @@ def build_workflow(embedder, vector_store, llm_client, top_k: int = 3):
         # MAX_RETRIES, then "response".
         #
         # This repo ships SequentialWorkflow as the default because
-        # `langgraph` cannot be pip-installed in this offline sandbox; swap
+        # `langgraph` isn't installed by default here; swap
         # in the StateGraph wiring above once you have network access.
         raise ImportError("LangGraph wiring intentionally deferred; see comment above")
     except Exception:
